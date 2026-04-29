@@ -1,0 +1,54 @@
+@baseUrl = http://localhost:8080/api/persons
+
+###
+# POST neue Person erstellen (zuerst ausführen, damit Daten da sind)
+POST {{baseUrl}}
+Content-Type: application/json
+
+{
+  "name": "Max",
+  "age": 25
+}
+
+###
+# GET alle Personen
+GET {{baseUrl}}
+Accept: application/json
+
+###
+# GET Person by ID
+GET {{baseUrl}}/1
+Accept: application/json
+
+###
+# SEARCH nach Name
+GET {{baseUrl}}/search?name=ma
+Accept: application/json
+
+###
+# PUT (komplett ersetzen)
+PUT {{baseUrl}}/1
+Content-Type: application/json
+
+{
+  "name": "Max Mustermann",
+  "age": 30
+}
+
+###
+# PATCH (teilweise ändern)
+PATCH {{baseUrl}}/1
+Content-Type: application/json
+
+{
+  "age": 35
+}
+
+###
+# DELETE Person
+DELETE {{baseUrl}}/1
+
+###
+# GET nach DELETE (sollte 404 Fehler liefern)
+GET {{baseUrl}}/1
+Accept: application/json
